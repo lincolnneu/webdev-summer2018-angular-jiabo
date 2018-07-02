@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelloWordComponent implements OnInit {
 
+  message = 'Hello from Hello World Component!';
+
   constructor() { }
 
   ngOnInit() {
