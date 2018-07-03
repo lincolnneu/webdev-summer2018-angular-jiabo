@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HelloWordComponent } from './hello-word/hello-word.component';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { HelloWordComponent } from './hello-word/hello-word.component';
     HelloWordComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
