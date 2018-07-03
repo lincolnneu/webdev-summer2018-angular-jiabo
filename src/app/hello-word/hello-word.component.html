@@ -1,1 +1,11 @@
 <h1>{{message}}</h1>
+
+<h2>Courses ({{courses.length}})</h2>
+
+<ul>
+  <li *ngFor="let course of courses" class="list-item" style="">
+    {{course.title}}
+  </li>
+  <!--ngFor is a for loop provided by angular.-->
+  <!--if modifying dom, add * in front.-->
+</ul>

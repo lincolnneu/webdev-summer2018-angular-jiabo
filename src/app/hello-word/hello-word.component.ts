@@ -9,6 +9,13 @@ export class HelloWordComponent implements OnInit {
 
   message = 'Hello from Hello World Component!';
 
+  courses=[
+    {title: 'CS5200', id:123},
+    {title: 'CS5610', id:234},
+    {title: 'CS3200', id:345},
+    {title: 'CS4550', id:456},
+  ];
+
   constructor() { }
 
   ngOnInit() {
