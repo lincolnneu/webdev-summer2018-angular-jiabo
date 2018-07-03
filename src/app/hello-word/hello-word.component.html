@@ -5,6 +5,7 @@
 <ul>
   <li *ngFor="let course of courses" class="list-item" style="">
     {{course.title}}
+    <button (click)="deleteCourse(course.id)">Delete</button>
   </li>
   <!--ngFor is a for loop provided by angular.-->
   <!--if modifying dom, add * in front.-->

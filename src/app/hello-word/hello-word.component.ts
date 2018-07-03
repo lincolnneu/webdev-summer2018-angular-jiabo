@@ -16,6 +16,13 @@ export class HelloWordComponent implements OnInit {
     {title: 'CS4550', id:456},
   ];
 
+  deleteCourse(courseId){
+    alert(courseId);
+    this.courses = this.courses.filter(course=>
+      course.id !== courseId
+    );
+  }
+
   constructor() { }
 
   ngOnInit() {
