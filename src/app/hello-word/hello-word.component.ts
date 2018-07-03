@@ -23,6 +23,13 @@ export class HelloWordComponent implements OnInit {
     );
   }
 
+  addCourse(courseTitle){
+    this.courses.push({
+      title : courseTitle,
+      id : 321
+    });
+  }
+
   constructor() { }
 
   ngOnInit() {
