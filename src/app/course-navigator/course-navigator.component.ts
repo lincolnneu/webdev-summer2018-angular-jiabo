@@ -12,10 +12,19 @@ export class CourseNavigatorComponent implements OnInit {
 
   courses = [];
   modules = [];
+  lessons = [];
+  selectedCourseId = null;
 
   selectCourse(courseId){
+    alert(courseId);
+    this.selectedCourseId = courseId;
     this.service.findAllModulesForCourses(courseId)
-      .then(modules => this.modules = modules);
+      .then(modules => (this.modules = modules));
+  }
+
+  selectModule(moduleId){
+    this.service.findAllLessonsForModule(this.selectedCourseId, moduleId)
+      .then(lessons => this.lessons = lessons);
   }
 
   ngOnInit() {
