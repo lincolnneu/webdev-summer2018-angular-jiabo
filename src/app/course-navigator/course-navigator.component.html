@@ -40,7 +40,7 @@
 
     <div class="col-2">
       <ul class="list-group">
-        <li class="list-group-item active">topics</li>
+        <li class="list-group-item active">Topics</li>
         <li *ngFor ="let topic of topics"
             (click)="selectTopic(topic.id)"
             class="list-group-item">
@@ -49,9 +49,18 @@
       </ul>
     </div>
 
+    <div class="col-2">
+      <ul class="list-group">
+        <li class="list-group-item active">Widgets</li>
+        <li *ngFor ="let widget of widgets"
+            (click)="selectWidget(widget.id)"
+            class="list-group-item">
+          {{widget.title}}
+        </li>
+      </ul>
+    </div>
 
 
-    <div class="col-2">widgets</div>
   </div>
 
 

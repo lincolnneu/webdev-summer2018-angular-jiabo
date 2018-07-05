@@ -14,9 +14,11 @@ export class CourseNavigatorComponent implements OnInit {
   modules = [];
   lessons = [];
   topics = [];
+  widgets = [];
   selectedCourseId = null;
   selectedModuleId = null;
   selectedLessonId = null;
+  selectedTopicId = null;
 
   selectCourse(courseId){
     this.selectedCourseId = courseId;
@@ -34,6 +36,12 @@ export class CourseNavigatorComponent implements OnInit {
     this.selectedLessonId = lessonId;
     this.service.findAllTopicsForLesson(this.selectedCourseId, this.selectedModuleId, lessonId)
       .then(topics => this.topics = topics);
+  }
+
+  selectTopic(topicId){
+    this.selectedTopicId = topicId;
+    this.service.findAllWidgetsForTopic(topicId)
+      .then(widgets => this.widgets = widgets);
   }
 
   ngOnInit() {

@@ -21,4 +21,9 @@ export class CourseNavigatorServiceClient{
       .then(response => response.json());
   }
 
+  findAllWidgetsForTopic(topicId){
+    return fetch(HOST + '/api/topic/' + topicId + '/widget')
+      .then(response => response.json());
+  }
+
 }
