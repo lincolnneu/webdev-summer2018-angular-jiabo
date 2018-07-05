@@ -9,6 +9,7 @@ import { CourseNavigatorComponent } from './course-navigator/course-navigator.co
 import { WhiteBoardComponent } from './white-board/white-board.component';
 import { CourseServiceClient } from './services/course.service.client';
 import { CourseGridComponent } from './course-grid/course-grid.component';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CourseGridComponent } from './course-grid/course-grid.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    routing
   ],
   providers: [
     CourseNavigatorServiceClient,
