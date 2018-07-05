@@ -16,4 +16,9 @@ export class CourseNavigatorServiceClient{
       .then(response => response.json());
   }
 
+  findAllTopicsForLesson(courseId, moduleId, lessonId){
+    return fetch(HOST + '/api/course/' + courseId + '/module/' + moduleId + '/lesson/' + lessonId + '/topic')
+      .then(response => response.json());
+  }
+
 }
