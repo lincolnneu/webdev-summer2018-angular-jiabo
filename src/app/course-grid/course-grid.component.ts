@@ -11,7 +11,7 @@ export class CourseGridComponent implements OnInit {
   constructor(private service: CourseServiceClient) { }
 
   courses: Course[] = [];
-  //strongly type of data type. Cannot assign wrong type of data.
+  // strongly type of data type. Cannot assign wrong type of data.
   // Attempt to add a different field that is not the original data type will fail.
   // Catch this error early before sent to server.
 

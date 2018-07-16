@@ -8,6 +8,7 @@ import { CourseNavigatorServiceClient } from './services/course-navigator.servic
 import { CourseNavigatorComponent } from './course-navigator/course-navigator.component';
 import { WhiteBoardComponent } from './white-board/white-board.component';
 import { CourseServiceClient } from './services/course.service.client';
+import { ModuleServiceClient } from './services/module.service.client';
 import { CourseGridComponent } from './course-grid/course-grid.component';
 import { routing } from './app.routing';
 import { CourseViewerComponent } from './course-viewer/course-viewer.component';
@@ -30,8 +31,10 @@ import { ModuleListComponent } from './module-list/module-list.component';
   ],
   providers: [
     CourseNavigatorServiceClient,
-    CourseServiceClient
+    CourseServiceClient,
+    ModuleServiceClient
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// providers: register as a provider
