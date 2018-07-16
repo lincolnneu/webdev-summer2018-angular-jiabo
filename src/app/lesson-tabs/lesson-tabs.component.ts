@@ -12,12 +12,22 @@ export class LessonTabsComponent implements OnInit {
 // inject the service
   constructor(private service: LessonServiceClient,
               private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.loadLessons(params['courseId'], params['moduleId']));
+    this.route.params.subscribe(params => this.setParams(params));
   }
 
   moduleId;
   courseId;
+  lessonId;
   lessons = [];
+
+  setParams(params){
+    this.courseId = params['courseId'];
+    this.moduleId = params['moduleId'];
+    this.lessonId = params['lessonId'];
+    this.loadLessons(this.courseId, this.moduleId);
+  }
+
+
   loadLessons(courseId, moduleId) {
     console.log(moduleId);
     this.moduleId = moduleId;
