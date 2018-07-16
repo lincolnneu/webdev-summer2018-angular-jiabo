@@ -12,12 +12,20 @@ export class ModuleListComponent implements OnInit {
   // inject the service
   constructor(private service: ModuleServiceClient,
               private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.loadModules(params['courseId']));
+    this.route.params.subscribe(params => this.setParams(params));
    } // component is aware of changes in the URL and it takes action about it.
    // we load modules for that particular course
 
    courseId; // as part of property
+   moduleId;
    modules = [];
+
+   setParams(params){
+    this.courseId = params['courseId'];
+    this.moduleId = params['moduleId'];
+    this.loadModules(this.courseId);
+   }
+
    loadModules(courseId) {
       this.courseId = courseId;
       this.service.findModulesForCourse(courseId)
