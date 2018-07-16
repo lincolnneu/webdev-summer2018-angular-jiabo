@@ -16,7 +16,7 @@ export class ModuleListComponent implements OnInit {
    } // component is aware of changes in the URL and it takes action about it.
    // we load modules for that particular course
 
-   courseId;
+   courseId; // as part of property
    modules = [];
    loadModules(courseId) {
       this.courseId = courseId;

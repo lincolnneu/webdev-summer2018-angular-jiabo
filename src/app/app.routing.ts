@@ -6,6 +6,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: WhiteBoardComponent},
   { path: 'course/:courseId', component: CourseViewerComponent},
+  { path: 'course/:courseId/module/:moduleId', component: CourseViewerComponent},
   { path: '**', component: WhiteBoardComponent} // any other path goes here.
   // if the path following the pattern, a course/ followed by a courseId, go CourseViewerComponent
 
