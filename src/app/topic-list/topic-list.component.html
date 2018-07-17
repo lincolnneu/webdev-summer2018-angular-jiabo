@@ -1,5 +1,11 @@
-<p>
-  topic-list works!
-</p>
+<ul class="nav nav-pills">
+  <li *ngFor="let topic of topics" class="nav-item">
+    <!--read from path-->
+    <!--url is a unique identifier at any particular state that the application can be in. We can reconstruct application from url.-->
+    <a class="nav-link"
+       [ngClass]="{'active' : topic.id == topicId}"
+       routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lessonId}}/topic/{{topic.id}}">{{topic.title}}</a>
+  </li>
+</ul>
 
 <app-widget-list></app-widget-list>

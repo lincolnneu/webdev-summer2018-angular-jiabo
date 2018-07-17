@@ -30,8 +30,6 @@ export class LessonTabsComponent implements OnInit {
 
   loadLessons(courseId, moduleId) {
     console.log(moduleId);
-    this.moduleId = moduleId;
-    this.courseId = courseId;
     this.service.findLessonsForModule(courseId, moduleId)
       .then( lessons => this.lessons = lessons);
   }

@@ -10,6 +10,7 @@ import { WhiteBoardComponent } from './white-board/white-board.component';
 import { CourseServiceClient } from './services/course.service.client';
 import { ModuleServiceClient } from './services/module.service.client';
 import { LessonServiceClient } from './services/lesson.service.client';
+import { TopicServiceClient } from './services/topic.service.client';
 import { CourseGridComponent } from './course-grid/course-grid.component';
 import { routing } from './app.routing';
 import { CourseViewerComponent } from './course-viewer/course-viewer.component';
@@ -40,7 +41,8 @@ import { TopicListComponent } from './topic-list/topic-list.component';
     CourseNavigatorServiceClient,
     CourseServiceClient,
     ModuleServiceClient,
-    LessonServiceClient
+    LessonServiceClient,
+    TopicServiceClient
   ],
   bootstrap: [AppComponent]
 })
