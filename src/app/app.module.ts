@@ -11,6 +11,7 @@ import { CourseServiceClient } from './services/course.service.client';
 import { ModuleServiceClient } from './services/module.service.client';
 import { LessonServiceClient } from './services/lesson.service.client';
 import { TopicServiceClient } from './services/topic.service.client';
+import { WidgetServiceClient } from './services/widget.service.client';
 import { CourseGridComponent } from './course-grid/course-grid.component';
 import { routing } from './app.routing';
 import { CourseViewerComponent } from './course-viewer/course-viewer.component';
@@ -42,7 +43,8 @@ import { TopicListComponent } from './topic-list/topic-list.component';
     CourseServiceClient,
     ModuleServiceClient,
     LessonServiceClient,
-    TopicServiceClient
+    TopicServiceClient,
+    WidgetServiceClient
   ],
   bootstrap: [AppComponent]
 })

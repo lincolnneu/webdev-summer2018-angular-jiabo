@@ -1,3 +1,13 @@
-<p>
-  widget-list works!
-</p>
+<ul>
+  <li *ngFor="let widget of widgets" class="card">
+    <!--read from path-->
+    <!--url is a unique identifier at any particular state that the application can be in. We can reconstruct application from url.-->
+    <div class="card-body">
+      <h1>{{widget.widgetType}}</h1>
+      <h2>{{widget.name}}</h2>
+      <p>{{widget.text}}</p>
+
+    </div>
+  </li>
+</ul>
+

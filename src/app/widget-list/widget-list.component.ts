@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { WidgetServiceClient } from '../services/widget.service.client';
+
 
 @Component({
   selector: 'app-widget-list',
@@ -7,7 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: WidgetServiceClient,
+              private route: ActivatedRoute) {
+              this.route.params.subscribe(params => this.setParams(params));
+  }
+
+
+  topicId;
+  widgets = [];
+
+  setParams(params){
+    this.topicId = params['topicId'];
+    this.loadWidgets(this.topicId);
+  }
+
+  loadWidgets(topicId){
+    this.service.findWidgetsForTopic(topicId)
+      .then(widgets => this.widgets = widgets);
+  }
 
   ngOnInit() {
   }
