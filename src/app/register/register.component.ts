@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
     if(password === password2){
       this.service.createUser(username, password)
         .then(() => {
+          console.log("redirecting to profile");
           this.router.navigate(['profile']);
         });
     }
