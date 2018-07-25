@@ -2,6 +2,12 @@
 // generate http request, waiting for http request, send a http request that one's going to send back a response.
 export class UserServiceClient{
 
+  // create the mirror image.
+  findUserById(userId){
+    return fetch('http://localhost:4000/api/user/' + userId)
+      .then(response => response.json());
+  }
+
   // create another endpoint.
   profile(){
     return fetch('http://localhost:4000/api/profile')

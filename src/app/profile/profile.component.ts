@@ -17,7 +17,8 @@ export class ProfileComponent implements OnInit {
     console.log(user);
   }
   ngOnInit() {
-    this.service.profile()
+    this.service
+      .findUserById('5b58f023ec45fe3654f13355')
       .then(user => this.user = user); // assign user from server to local
   }
 
