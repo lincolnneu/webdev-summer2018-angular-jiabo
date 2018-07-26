@@ -24,7 +24,10 @@ export class SectionListComponent implements OnInit {
   }
 
   createSection(sectionName, seats) {
-    this.service.createSection(this.courseId, sectionName, seats);
+    this.service.createSection(this.courseId, sectionName, seats)
+      .then(() => {
+        this.loadSections(this.courseId); // immediately update section list after adding one more section.
+      });
   }
 
   ngOnInit() {
