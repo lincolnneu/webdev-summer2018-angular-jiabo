@@ -19,10 +19,17 @@ export class RegisterComponent implements OnInit {
     console.log([username, password, password2]);
     if(password === password2){
       this.service.createUser(username, password)
-        .then(() => {
-          console.log("redirecting to profile");
-          this.router.navigate(['profile']);
+        .then((res) => {
+          if(res != null){
+            console.log('redirecting to profile');
+            this.router.navigate(['profile']);
+          } else{
+            alert('The username is already taken, please try other username!');
+          }
+
         });
+    } else{
+      alert('The password and verify password should be the same!');
     }
   }
   ngOnInit() {

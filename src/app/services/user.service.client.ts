@@ -20,7 +20,8 @@ export class UserServiceClient{
       headers: {
         'content-type': 'application/json'
       }
-    });
+    })
+      .then(response => response.json());
   }
 
   lougout(){
@@ -53,6 +54,7 @@ export class UserServiceClient{
       } // include the credentials to make sure each query participate in the same session.
       // force it to send cookies even if you are in different domains.
       // if in the same domain only works on the same origin
-    });
+    })
+      .then(response => response.json());
   }
 }
