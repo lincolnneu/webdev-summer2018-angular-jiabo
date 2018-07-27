@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SectionServiceClient } from '../services/section.service.client';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-section-list',
@@ -9,7 +10,7 @@ import { SectionServiceClient } from '../services/section.service.client';
 })
 export class SectionListComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private service: SectionServiceClient) {
+  constructor(private route: ActivatedRoute, private service: SectionServiceClient, private router: Router) {
     this.route.params.subscribe(params => this.loadSections(params['courseId'])); // self contained section
   }
 
@@ -33,7 +34,10 @@ export class SectionListComponent implements OnInit {
   enroll(section) {
     // alert(section._id);
     // delegate data communication to service;
-    this.service.enrollStudentInSection(section._id);
+    this.service.enrollStudentInSection(section._id)
+      .then(() => {
+        this.router.navigate(['profile']);
+      });// navigate to the profile
   }
 
   ngOnInit() {

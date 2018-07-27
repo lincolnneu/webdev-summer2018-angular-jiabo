@@ -1,6 +1,16 @@
 export class SectionServiceClient {
   SECTION_URL = 'http://localhost:4000/api/course/COURSEID/section';
 
+  findSectionsForStudnet(){
+    const url = 'http://localhost:4000/api/student/section';
+    return fetch(url,{
+      credentials: 'include' // pass in the credentials
+    })
+      .then(response => response.json());
+
+  }
+
+
   enrollStudentInSection(sectionId) {
     const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
     return fetch(url, {
