@@ -11,16 +11,17 @@ import { SectionServiceClient } from '../services/section.service.client';
 })
 export class ProfileComponent implements OnInit {
  // use user profile service
-  constructor(private service: UserServiceClient,private sectionService: SectionServiceClient, private router: Router) { }
+  constructor(private service: UserServiceClient, private sectionService: SectionServiceClient, private router: Router) { }
 
   user: User = new User();
+
   enrollments = [];
-  update(user: User){
+  update(user: User) {
     console.log(user);
   }
 
   // event handler for log out
-  logout(){ // hey server, destroy my session
+  logout() { // hey server, destroy my session
     this.service
       .lougout()
       .then(() => this.router.navigate(['login']));
@@ -31,17 +32,20 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.service
       .profile()
-      .then(user => this.user = user);
+      .then(res => {
+          if (res.status === 403) {
+            return this.router.navigate(['login']);
+          } else {
+            res.json().then(user => this.user = user);
+            this.sectionService
+              .findSectionsForStudent()
+              .then(sections => this.enrollments = sections);
+          }
+        });
 
     // this.service
     //   .findUserById('5b58f023ec45fe3654f13355')
     //   .then(user => this.user = user); // assign user from server to local
-
-    this.sectionService
-      .findSectionsForStudnet()
-      .then(sections => this.enrollments = sections);
-
-
   }
 
 }

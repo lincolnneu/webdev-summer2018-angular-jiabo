@@ -37,7 +37,7 @@ export class UserServiceClient{
     return fetch('http://localhost:4000/api/profile',{
       credentials: 'include'
     })
-      .then(response => response.json());
+      .then(res => res);
   }
 
   createUser(username, password){

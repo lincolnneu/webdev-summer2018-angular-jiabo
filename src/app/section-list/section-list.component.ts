@@ -21,7 +21,7 @@ export class SectionListComponent implements OnInit {
   loadSections(courseId){
     this.courseId = courseId;
     // use our service to find a particular course
-    this.service.findSectionsForCourse(courseId).then(sections => this.sections = sections);
+    this.service.findSectionsForCourse(courseId).then(sections => { if (sections != null) {this.sections = sections; } });
   }
 
   createSection(sectionName, seats) {
