@@ -16,7 +16,8 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
 
   enrollments = [];
-  update(user: User) {
+  update(user) {
+    this.service.updateUser(this.user);
     console.log(user);
   }
 

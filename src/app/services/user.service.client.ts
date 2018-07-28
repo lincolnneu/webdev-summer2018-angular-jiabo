@@ -57,4 +57,18 @@ export class UserServiceClient{
     })
       .then(response => response.json());
   }
+
+  updateUser(user){
+    return fetch('http://localhost:4000/api/user', {
+      body: JSON.stringify(user),
+      credentials: 'include',
+      method: 'put',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(response => response.json());
+
+  }
+
 }
