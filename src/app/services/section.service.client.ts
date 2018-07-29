@@ -34,13 +34,13 @@ export class SectionServiceClient {
 
 
   // has all crud operation from client
-  createSection(courseId, name, seats){
+  createSection(courseId, name, maxSeats, seats){
     // console.log(courseId + ' ' + name + ' ' + seats);
     // const section = {
     //   name: name,
     //   seats: seats
     // }
-    const section = {courseId, name, seats};
+    const section = {courseId, name, maxSeats, seats};
     // post this section
     return fetch(this.SECTION_URL.replace('COURSEID', courseId),{
       method: 'post',

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SectionServiceClient } from '../services/section.service.client';
 import { Router } from '@angular/router';
+import { UserServiceClient } from '../services/user.service.client';
 
 @Component({
   selector: 'app-section-list',
@@ -10,12 +11,12 @@ import { Router } from '@angular/router';
 })
 export class SectionListComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private service: SectionServiceClient, private router: Router) {
+  constructor(private route: ActivatedRoute, private userService: UserServiceClient, private service: SectionServiceClient, private router: Router) {
     this.route.params.subscribe(params => this.loadSections(params['courseId'])); // self contained section
   }
 
   sectionName = '';
-  seats = '';
+  maxSeats = '';
   courseId = '';
   sections = [];
   loadSections(courseId){
@@ -24,8 +25,8 @@ export class SectionListComponent implements OnInit {
     this.service.findSectionsForCourse(courseId).then(sections => { if (sections != null) {this.sections = sections; } });
   }
 
-  createSection(sectionName, seats) {
-    this.service.createSection(this.courseId, sectionName, seats)
+  createSection(sectionName, maxSeats) {
+    this.service.createSection(this.courseId, sectionName, maxSeats, maxSeats)
       .then(() => {
         this.loadSections(this.courseId); // immediately update section list after adding one more section.
       });
@@ -34,22 +35,29 @@ export class SectionListComponent implements OnInit {
   enroll(section) {
     // alert(section._id);
     // delegate data communication to service;
-
-    if(section.seats <= 0){
-      alert('No seat available for this section.');
-    }
-    else{
-      this.service.enrollStudentInSection(section._id)
-        .then((res) => {
-          if(res.status === 403){
-            alert('You have already enrolled in this section!');
+    this.userService
+      .profile()
+      .then(res => {
+        if(res.status === 403){
+          return this.router.navigate(['login']);
+        }
+        else {
+          if(section.seats <= 0){
+            alert('No seat available for this section.');
+          } else{
+            this.service.enrollStudentInSection(section._id)
+              .then((res) => {
+                if(res.status === 403){
+                  alert('You have already enrolled in this section!');
+                }
+                else {
+                  alert('Enrolled successfully! Navigating to profile');
+                  this.router.navigate(['profile']);
+                }
+              }); // navigate to the profile
           }
-          else {
-            alert('Enrolled successfully! Navigating to profile');
-            this.router.navigate(['profile']);
-          }
-        }); // navigate to the profile
-    }
+        }
+      });
   }
 
   ngOnInit() {
