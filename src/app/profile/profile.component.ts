@@ -11,7 +11,9 @@ import { SectionServiceClient } from '../services/section.service.client';
 })
 export class ProfileComponent implements OnInit {
  // use user profile service
-  constructor(private service: UserServiceClient, private sectionService: SectionServiceClient, private router: Router) { }
+  constructor(private service: UserServiceClient,
+              private sectionService: SectionServiceClient,
+              private router: Router) { }
 
   user: User = new User();
 
@@ -27,6 +29,13 @@ export class ProfileComponent implements OnInit {
       .lougout()
       .then(() => this.router.navigate(['login']));
 
+  }
+
+  unenroll(enrollment) {
+    this.sectionService.unenrollStudentInSection(enrollment.section._id)
+      .then(() => {
+        location.reload();
+      }); // navigate to the profile
   }
 
 
