@@ -30,12 +30,13 @@
     Update
   </button>
 
-  <h2>Sections ({{enrollments.length}})</h2>
+  <h2>Enrolled Sections ({{enrollments.length}})</h2>
 
   <ul class="list-group">
     <li *ngFor="let enrollment of enrollments" class="list-group-item">
-      {{enrollment.section.name}}
-      ({{enrollment.section.seats}})
+      Course name: {{enrollment.section.courseId}} |
+      Section name: {{enrollment.section.name}} |
+      Grade: {{enrollment.grade}}
       <button (click)="unenroll(enrollment)" class="float-right btn btn-primary">Unenroll</button>
     </li>
 
