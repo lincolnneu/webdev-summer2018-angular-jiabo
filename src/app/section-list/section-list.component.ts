@@ -34,10 +34,22 @@ export class SectionListComponent implements OnInit {
   enroll(section) {
     // alert(section._id);
     // delegate data communication to service;
-    this.service.enrollStudentInSection(section._id)
-      .then(() => {
-        this.router.navigate(['profile']);
-      });// navigate to the profile
+
+    if(section.seats <= 0){
+      alert('No seat available for this section.');
+    }
+    else{
+      this.service.enrollStudentInSection(section._id)
+        .then((res) => {
+          if(res.status === 403){
+            alert('You have already enrolled in this section!');
+          }
+          else {
+            alert('Enrolled successfully! Navigating to profile');
+            this.router.navigate(['profile']);
+          }
+        }); // navigate to the profile
+    }
   }
 
   ngOnInit() {
