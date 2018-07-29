@@ -3,7 +3,8 @@
   <div *ngIf="user.username === 'admin'">
     <input [(ngModel)]="sectionName" placeholder="Section Name" class="form-control">
     <input [(ngModel)]="maxSeats" placeholder="Maximum Seats" class="form-control">
-    <button (click)="createSection(sectionName, maxSeats)" class="btn btn-success btn-block">Add Section</button>
+    <button *ngIf="editing === false"(click)="createSection(sectionName, maxSeats)" class="btn btn-success btn-block">Add Section</button>
+    <button *ngIf="user.username === 'admin' && editing === true" (click)="editDone(editingSection, sectionName, maxSeats)" class="btn btn-success btn-block">Edit done!</button>
   </div>
   <ul class="list-group">
     <li *ngFor="let section of sections" class="list-group-item">

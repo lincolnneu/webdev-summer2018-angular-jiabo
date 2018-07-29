@@ -53,6 +53,18 @@ export class SectionServiceClient {
     });
   }
 
+  updateSection(_id, name, maxSeats){
+    const section = {_id, name, maxSeats};
+    return fetch(this.SECTION_URL_SHORT + _id, {
+      method: 'put',
+      body: JSON.stringify(section),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+  }
+
   removeSection(sectionId){
     return fetch(this.SECTION_URL_SHORT + sectionId,{
       method: 'delete',

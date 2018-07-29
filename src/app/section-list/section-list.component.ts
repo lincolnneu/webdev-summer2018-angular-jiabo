@@ -22,11 +22,12 @@ export class SectionListComponent implements OnInit {
   }
 
   user: User = new User();
-
+  editing = false;
   sectionName = '';
   maxSeats = '';
   courseId = '';
   course;
+  editingSection;
   sections = [];
   loadSections(courseId){
     this.courseId = courseId;
@@ -75,7 +76,25 @@ export class SectionListComponent implements OnInit {
 
   remove(section){
     this.service.removeSection(section._id)
-      .then(()=>{location.reload()});
+      .then(() => {location.reload()});
+  }
+
+  edit(section){
+    this.editing = true;
+    this.editingSection = section;
+    this.sectionName = section.name;
+    this.maxSeats = section.maxSeats;
+  }
+
+  editDone(section, sectionName, maxSeats){
+    this.service.updateSection(section._id, sectionName, maxSeats)
+      .then(() => {
+        this.loadSections(this.courseId); // immediately update section list after adding one more section.
+        this.editing = false;
+        this.editingSection = null;
+        this.sectionName = this.course.title + ' Section ' + (this.sections.length + 1);
+        this.maxSeats = '';
+      });
   }
 
   ngOnInit() {
