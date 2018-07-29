@@ -3,6 +3,7 @@ import { User } from '../models/user.model.client';
 import { UserServiceClient } from '../services/user.service.client';
 import { Route, Router } from '@angular/router';
 import { SectionServiceClient } from '../services/section.service.client';
+import { CourseServiceClient } from '../services/course.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,7 @@ export class ProfileComponent implements OnInit {
  // use user profile service
   constructor(private service: UserServiceClient,
               private sectionService: SectionServiceClient,
+              private courseService: CourseServiceClient,
               private router: Router) { }
 
   user: User = new User();
@@ -38,6 +40,10 @@ export class ProfileComponent implements OnInit {
       }); // navigate to the profile
   }
 
+  findCourseById(courseId){
+    return this.courseService.findCourseById(courseId);
+  }
+
 
   ngOnInit() {
     this.service
@@ -49,7 +55,18 @@ export class ProfileComponent implements OnInit {
             res.json().then(user => this.user = user);
             this.sectionService
               .findSectionsForStudent()
-              .then(sections => this.enrollments = sections);
+              .then(sections => {
+                this.enrollments = sections;
+                console.log(this.enrollments);
+                this.enrollments.forEach(entry => {
+                  this.findCourseById(entry.section.courseId)
+                    .then(
+                      course => {
+                        entry.course = course;
+                      }
+                    );
+                });
+              });
           }
         });
 
