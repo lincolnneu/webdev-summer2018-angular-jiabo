@@ -45,7 +45,7 @@ export class UserServiceClient{
       username: username,
       password: password
     };
-    return fetch('http://localhost:4000/api/user',{ //fetch returns a promise
+    return fetch('http://localhost:4000/api/register',{ //fetch returns a promise
       body: JSON.stringify(user),
       credentials: 'include',
       method: 'post',
@@ -59,7 +59,7 @@ export class UserServiceClient{
   }
 
   updateUser(user){
-    return fetch('http://localhost:4000/api/user', {
+    return fetch('http://localhost:4000/api/profile', {
       body: JSON.stringify(user),
       credentials: 'include',
       method: 'put',
