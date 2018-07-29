@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from '../models/user.model.client';
 import { SectionServiceClient } from '../services/section.service.client';
 import { Router } from '@angular/router';
 import { UserServiceClient } from '../services/user.service.client';
+import { CourseServiceClient } from '../services/course.service.client';
 
 @Component({
   selector: 'app-section-list',
@@ -11,13 +13,20 @@ import { UserServiceClient } from '../services/user.service.client';
 })
 export class SectionListComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private userService: UserServiceClient, private service: SectionServiceClient, private router: Router) {
+  constructor(private route: ActivatedRoute,
+              private userService: UserServiceClient,
+              private service: SectionServiceClient,
+              private courseService: CourseServiceClient,
+              private router: Router) {
     this.route.params.subscribe(params => this.loadSections(params['courseId'])); // self contained section
   }
+
+  user: User = new User();
 
   sectionName = '';
   maxSeats = '';
   courseId = '';
+  course;
   sections = [];
   loadSections(courseId){
     this.courseId = courseId;
@@ -30,6 +39,10 @@ export class SectionListComponent implements OnInit {
       .then(() => {
         this.loadSections(this.courseId); // immediately update section list after adding one more section.
       });
+  }
+
+  findCourseById(courseId){
+    return this.courseService.findCourseById(courseId);
   }
 
   enroll(section) {
@@ -61,7 +74,22 @@ export class SectionListComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.userService
+      .profile()
+      .then(res => {
+        if (res.status === 403) {
+          return this.router.navigate(['login']);
+        } else {
+          res.json().then(user => this.user = user);
+          this.findCourseById(this.courseId)
+            .then(
+              course => {
+                this.course = course;
+                this.sectionName = course.title + ' Section ' + (this.sections.length + 1);
+              }
+            );
+        }
+      });
 
   }
 
