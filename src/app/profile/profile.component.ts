@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit {
                     .then(
                       course => {
                         entry.course = course;
+                        entry.courseRoute = '/course/' + entry.section.courseId;
                       }
                     );
                 });

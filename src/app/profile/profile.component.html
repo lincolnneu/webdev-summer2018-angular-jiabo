@@ -34,8 +34,8 @@
 
   <ul class="list-group">
     <li *ngFor="let enrollment of enrollments" class="list-group-item">
-      Course name: {{enrollment.course?enrollment.course.title:null}} |
-      Section name: {{enrollment.section.name}} |
+      <a routerLink={{enrollment.courseRoute}}>{{enrollment.course?enrollment.course.title:null}}</a> |
+      {{enrollment.section.name}} |
       Grade: {{enrollment.grade}}
       <button (click)="unenroll(enrollment)" class="float-right btn btn-primary">Unenroll</button>
     </li>
