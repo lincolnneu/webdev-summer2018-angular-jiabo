@@ -4,6 +4,7 @@ import { CourseViewerComponent } from './course-viewer/course-viewer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminComponent } from './admin/admin.component';
 import { SectionListComponent } from './section-list/section-list.component';
 
 
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'profile', component: ProfileComponent},
+  { path: 'admin', component: AdminComponent},
   { path: 'course/:courseId', component: CourseViewerComponent},
   { path: 'course/:courseId/section', component: SectionListComponent},
   { path: 'course/:courseId/module/:moduleId', component: CourseViewerComponent},
