@@ -22,7 +22,6 @@ export class ProfileComponent implements OnInit {
   enrollments = [];
   update(user) {
     this.service.updateUser(this.user);
-    console.log(user);
   }
 
   // event handler for log out

@@ -73,6 +73,11 @@ export class SectionListComponent implements OnInit {
       });
   }
 
+  remove(section){
+    this.service.removeSection(section._id)
+      .then(()=>{location.reload()});
+  }
+
   ngOnInit() {
     this.userService
       .profile()
