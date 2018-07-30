@@ -64,7 +64,12 @@ export class CourseViewerComponent implements OnInit {
         }
       });
   }
+  logout() { // hey server, destroy my session
+    this.userService
+      .logout()
+      .then(() => location.reload());
 
+  }
 
   loadCourse(courseId){
     if(courseId !== undefined){

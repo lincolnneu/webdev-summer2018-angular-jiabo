@@ -89,6 +89,13 @@ export class SectionListComponent implements OnInit {
       });
   }
 
+  logout() { // hey server, destroy my session
+    this.userService
+      .logout()
+      .then(() => location.reload());
+
+  }
+
   edit(section){
     this.editing = true;
     this.editingSection = section;

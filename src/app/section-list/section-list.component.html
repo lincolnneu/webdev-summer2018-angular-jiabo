@@ -1,23 +1,44 @@
+<nav class="navbar navbar-expand-md bg-dark fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/home" style="color: white">White Board</a>
+    </div>
+    <div class="navbar-nav" id="myNavbar">
+      <!--<a *ngIf="loggedIn === false" routerLink="/login" style="color: white; margin:12px">Login</a>-->
+      <!--<a *ngIf="loggedIn === false"  routerLink="/register" style="color: white; margin:12px">Register</a>-->
+      <a routerLink="/profile" style="color: white; margin:12px">Profile</a>
+      <a *ngIf="user.username === 'admin'" style="color: white; margin:12px" routerLink="/admin">Admin</a>
+      <a (click)="logout()" style="color: white; margin:12px">Logout</a>
+      <a routerLink="/home" style="color: white; margin:12px">Home</a>
+    </div>
+  </div>
+</nav>
+
+<br/>
+<br/>
+<br/>
+
+
 <div class="container-fluid">
   <h1>Sections for {{course?course.title:null}}</h1>
   <div *ngIf="user.username === 'admin'">
     <input [(ngModel)]="sectionName" placeholder="Section Name" class="form-control">
+    <br/>
     <input [(ngModel)]="maxSeats" placeholder="Maximum Seats" class="form-control">
+    <br/>
     <button *ngIf="editing === false"(click)="createSection(sectionName, maxSeats)" class="btn btn-success btn-block">Add Section</button>
     <button *ngIf="user.username === 'admin' && editing === true" (click)="editDone(editingSection, sectionName, maxSeats)" class="btn btn-success btn-block">Edit done!</button>
+    <br/>
   </div>
   <ul class="list-group">
     <li *ngFor="let section of sections" class="list-group-item">
       {{section.name}} current available seats: {{section.seats}} / max capacity: {{section.maxSeats}}
-      <button *ngIf="user.username != 'admin'" (click)="enroll(section)" class="float-right btn btn-primary">Enroll</button>
-      <button *ngIf="user.username === 'admin'" (click)="edit(section)" class="float-right btn btn-primary">Edit</button>
-      <button *ngIf="user.username === 'admin'" (click)="remove(section)" class="float-right btn btn-primary">Remove</button>
+      <button *ngIf="user.username != 'admin'" (click)="enroll(section)" class="float-right btn btn-primary" style="margin-right: 10px;">Enroll</button>
+      <button *ngIf="user.username === 'admin'" (click)="edit(section)" class="float-right btn btn-primary" style="margin-right: 10px;">Edit</button>
+      <button *ngIf="user.username === 'admin'" (click)="remove(section)" class="float-right btn btn-primary" style="margin-right: 10px;">Remove</button>
       <!--show it or not depending-->
     </li>
 
   </ul>
-
-  <a routerLink="/profile">Profile</a>
-  <a routerLink="/home">Home</a>
 
 </div>
