@@ -25,10 +25,11 @@
          placeholder= "address"
          class="form-control"  />
 
-  <button (click) = "update(user)"
+  <button (click) = "update()"
           class="btn btn-primary btn-block">
     Update
   </button>
+  <button (click) = "deleteProfile()" class="btn btn-danger btn-block">Delete this profile</button>
 
   <h2>Enrolled Sections ({{enrollments.length}})</h2>
 

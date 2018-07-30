@@ -20,8 +20,22 @@ export class ProfileComponent implements OnInit {
   user: User = new User();
 
   enrollments = [];
-  update(user) {
-    this.service.updateUser(this.user);
+  update() {
+    this.service.updateUser(this.user)
+      .then(() => {
+        location.reload();
+      });
+  }
+
+  deleteProfile(){
+    // unenroll all enrollments related to this student
+    Promise.all(this.enrollments.map(enrollment => {
+      this.sectionService.unenrollStudentInSection(enrollment.section._id);
+    }))
+    .then(() =>{
+      this.service.deleteProfile(this.user)
+        .then(() => {location.reload()})
+    }); // delete profile
   }
 
   // event handler for log out
@@ -56,7 +70,6 @@ export class ProfileComponent implements OnInit {
               .findSectionsForStudent()
               .then(sections => {
                 this.enrollments = sections;
-                console.log(this.enrollments);
                 this.enrollments.forEach(entry => {
                   this.findCourseById(entry.section.courseId)
                     .then(
