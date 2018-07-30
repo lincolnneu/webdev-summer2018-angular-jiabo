@@ -26,10 +26,12 @@
 
   <input [(ngModel)] = "password"
          placeholder= "password"
+         type="password"
          class="form-control"  />
 
   <input [(ngModel)] = "password2"
          placeholder= "verify password"
+         type="password"
          class="form-control"  />
 
   <button (click) = "register(username, password, password2)"
