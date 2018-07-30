@@ -35,9 +35,8 @@ export class CourseGridComponent implements OnInit {
               this.user = user;
               this.sectionService.findSectionsForStudent()
                 .then(enrollments => {
-                  Promise.all(enrollments.map(
+                  enrollments.map(
                     enrollment => {
-                      console.log(enrollment.section.courseId);
                       this.service.findCourseById(enrollment.section.courseId)
                         .then(result => {
                           const item = {title: result.title, id: result.id};
@@ -46,10 +45,7 @@ export class CourseGridComponent implements OnInit {
                             this.enrolledCourses.push(item);
                           }
                         });
-                    }))
-                    .then(() => {
-                      console.log(this.enrolledCourses);
-                    })
+                    });
               });
             });
         }
