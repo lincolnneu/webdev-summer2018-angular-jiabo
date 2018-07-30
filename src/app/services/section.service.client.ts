@@ -21,9 +21,9 @@ export class SectionServiceClient {
   }
 
   unenrollStudentInSection(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/unenrollment';
+    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
     return fetch(url, {
-      method: 'post',
+      method: 'delete',
       credentials: 'include'
     });
   }
