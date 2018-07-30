@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
 
   user: User = new User();
 
+  loggedIn = false;
   enrollments = [];
   update() {
     this.service.updateUser(this.user)
@@ -41,7 +42,7 @@ export class ProfileComponent implements OnInit {
   // event handler for log out
   logout() { // hey server, destroy my session
     this.service
-      .lougout()
+      .logout()
       .then(() => this.router.navigate(['login']));
 
   }
@@ -66,6 +67,7 @@ export class ProfileComponent implements OnInit {
             return this.router.navigate(['login']);
           } else {
             res.json().then(user => this.user = user);
+            this.loggedIn = true;
             this.sectionService
               .findSectionsForStudent()
               .then(sections => {

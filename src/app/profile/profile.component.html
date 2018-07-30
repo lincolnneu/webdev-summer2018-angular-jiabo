@@ -1,3 +1,24 @@
+<nav class="navbar navbar-expand-md bg-dark fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/home" style="color: white">White Board</a>
+    </div>
+    <div class="navbar-nav" id="myNavbar">
+      <!--<a *ngIf="loggedIn === false" routerLink="/login" style="color: white; margin:12px">Login</a>-->
+      <!--<a *ngIf="loggedIn === false"  routerLink="/register" style="color: white; margin:12px">Register</a>-->
+      <!--<a *ngIf="loggedIn === true"  routerLink="/profile" style="color: white; margin:12px">Profile</a>-->
+      <a *ngIf="user.username === 'admin'" style="color: white; margin:12px" routerLink="/admin">Admin</a>
+      <a *ngIf="loggedIn === true"  (click)="logout()" style="color: white; margin:12px">Logout</a>
+      <a routerLink="/home" style="color: white; margin:12px">Home</a>
+    </div>
+  </div>
+</nav>
+
+<br/>
+<br/>
+<br/>
+
+
 <div class="container-fluid">
   <h1>Profile</h1>
 
@@ -42,9 +63,4 @@
     </li>
 
   </ul>
-
-  <a (click)="logout()">Logout</a>
-  <a routerLink="/home">Home</a>
-  <a *ngIf="user.username === 'admin'" routerLink="/admin">Admin</a>
-
 </div>

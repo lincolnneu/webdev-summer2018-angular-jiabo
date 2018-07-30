@@ -9,6 +9,7 @@ import { UserServiceClient } from '../services/user.service.client';
 })
 export class LoginComponent implements OnInit {
 
+  loggedIn = false;
   username;
   password;
   login(username, password){
@@ -24,9 +25,22 @@ export class LoginComponent implements OnInit {
 
   }
 
+  logout() { // hey server, destroy my session
+    this.service
+      .logout()
+      .then(() => location.reload());
+
+  }
+
   constructor(private router: Router, private service: UserServiceClient) { }
 
   ngOnInit() {
+    this.service
+      .profile()
+      .then(res => {
+        if (res.status !== 403) {
+          this.loggedIn = true;
+        }});
   }
 
 }

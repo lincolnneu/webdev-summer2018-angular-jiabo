@@ -24,7 +24,7 @@ export class UserServiceClient{
       .then(response => response.json());
   }
 
-  lougout(){
+  logout(){
     return fetch('http://localhost:4000/api/logout',{
       method: 'post',
       credentials: 'include'

@@ -22,6 +22,7 @@ export class CourseViewerComponent implements OnInit {
     this.route.params.subscribe(params => this.loadCourse(params.courseId)); // if any change, we will get notified.
   }
 
+  loggedIn = false;
   user: User = new User();
   enrollments = [];
   isEnrolled = 0;
@@ -34,13 +35,14 @@ export class CourseViewerComponent implements OnInit {
       .then(res => {
         if(res.status === 403){
           // not logged in
-          console.log("not logged in");
+          // console.log("not logged in");
           // return new Promise((resolve, reject) => resolve(true));
         } else {
           // logged in
           return res.json()
             .then(user => {
               this.user = user;
+              this.loggedIn = true;
               if(this.user.username === 'admin'){
                 this.isEnrolled = 1;
                 // return new Promise((resolve, reject) => resolve(true));

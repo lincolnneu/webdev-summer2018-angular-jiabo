@@ -12,6 +12,9 @@ export class RegisterComponent implements OnInit {
 
 
   }
+
+  loggedIn = false;
+
   username;
   password;
   password2;
@@ -32,7 +35,21 @@ export class RegisterComponent implements OnInit {
       alert('The password and verify password should be the same!');
     }
   }
+
+  logout() { // hey server, destroy my session
+    this.service
+      .logout()
+      .then(() => location.reload());
+
+  }
+
   ngOnInit() {
+    this.service
+      .profile()
+      .then(res => {
+        if (res.status !== 403) {
+          this.loggedIn = true;
+        }});
   }
 
 }
