@@ -19,19 +19,16 @@
 <br/>
 
 <h2>
-  Courses Currently Active ({{coursesToDisplay.length}})
+  Courses Currently Active ({{courses.length}})
 </h2>
 
 <div class="row">
-  <div *ngFor="let course of coursesToDisplay" class="col-sm-3">
+  <div *ngFor="let course of courses" class="col-sm-3">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{course.title}}</h5>
-<<<<<<< HEAD
         <p *ngIf="course.private === true" class="card-text">This is a private course!</p>
-=======
-        <p *ngIf="course.private === true" class="card-text">Private!</p>
->>>>>>> c7ce194db93e43432b00177613a833174acc6bce
+
         <a routerLink="/course/{{course.id}}" class="btn btn-primary">View</a>
         <!--routerLink is designed specially for router path.-->
         <a *ngIf="user.username != 'admin'" routerLink="/course/{{course.id}}/section" class="btn btn-primary">Enroll</a>

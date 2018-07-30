@@ -20,11 +20,6 @@ export class CourseGridComponent implements OnInit {
   enrolledCourseIds = [];
   courses: Course[] = [];
 
-<<<<<<< HEAD
-=======
-  coursesToDisplay = [];
-
->>>>>>> c7ce194db93e43432b00177613a833174acc6bce
   // strongly type of data type. Cannot assign wrong type of data.
   // Attempt to add a different field that is not the original data type will fail.
   // Catch this error early before sent to server.
@@ -46,13 +41,9 @@ export class CourseGridComponent implements OnInit {
                       this.service.findCourseById(enrollment.section.courseId)
                         .then(result => {
                           const item = {title: result.title, id: result.id};
-                          console.log(result.id);
                           if(this.enrolledCourseIds.indexOf(result.id) === -1){
                             this.enrolledCourseIds.push(result.id);
                             this.enrolledCourses.push(item);
-                            if(result.private === true){
-                              this.coursesToDisplay.push(result);
-                            }
                           }
                         });
                     });
@@ -62,20 +53,6 @@ export class CourseGridComponent implements OnInit {
         this.service.findAllCourses()
           .then(courses => {
             this.courses = courses;
-<<<<<<< HEAD
-=======
-            courses.forEach(c =>{
-              if(c.private === true){
-              }
-              else{
-                this.coursesToDisplay.push(c);
-              }
-            });
-
-            if(this.user.username === 'admin'){
-              this.coursesToDisplay = this.courses;
-            }
->>>>>>> c7ce194db93e43432b00177613a833174acc6bce
           });
         });
   }
