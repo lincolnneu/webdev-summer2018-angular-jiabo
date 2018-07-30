@@ -19,6 +19,7 @@ export class CourseGridComponent implements OnInit {
   enrolledCourses = [];
   enrolledCourseIds = [];
   courses: Course[] = [];
+
   // strongly type of data type. Cannot assign wrong type of data.
   // Attempt to add a different field that is not the original data type will fail.
   // Catch this error early before sent to server.
@@ -28,7 +29,7 @@ export class CourseGridComponent implements OnInit {
       .profile()
       .then(res => {
         if (res.status === 403) {
-        // do nothing
+          // do nothing
         } else {
           res.json()
             .then(user => {
@@ -46,11 +47,13 @@ export class CourseGridComponent implements OnInit {
                           }
                         });
                     });
-              });
+                });
             });
         }
         this.service.findAllCourses()
-          .then(courses => this.courses = courses);
+          .then(courses => {
+            this.courses = courses;
+          });
         });
   }
 

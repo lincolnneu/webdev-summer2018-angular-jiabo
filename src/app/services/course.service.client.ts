@@ -5,6 +5,17 @@ export class CourseServiceClient{
       .then(response => response.json());
   }
 
+  findCourseByIdWithPermission(courseId, isEnrolled){
+    return fetch(this.COURSE_URL + '/' + courseId,{
+      body: JSON.stringify(isEnrolled),
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+      .then(response => response.json());
+  }
+
   findCourseById(courseId){
     return fetch(this.COURSE_URL + '/' + courseId)
       .then(response => response.json());

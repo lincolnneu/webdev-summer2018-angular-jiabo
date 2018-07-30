@@ -12,7 +12,6 @@ export class LoginComponent implements OnInit {
   username;
   password;
   login(username, password){
-    console.log([username, password]);
     this.service.login(username, password)
       .then((res) => {
         // validation if null 0 will not
