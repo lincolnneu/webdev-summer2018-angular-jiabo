@@ -11,6 +11,13 @@ export class SectionServiceClient {
 
   }
 
+  findStudentsForSection(sectionId){
+    const url = this.SECTION_URL_SHORT + sectionId + '/student';
+    return fetch(url, {
+      method: 'get',
+      credentials: 'include'
+    }).then(response => response.json());
+  }
 
   enrollStudentInSection(sectionId) {
     const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
@@ -22,6 +29,15 @@ export class SectionServiceClient {
 
   unenrollStudentInSection(sectionId) {
     const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+    return fetch(url, {
+      method: 'delete',
+      credentials: 'include'
+    });
+  }
+
+  unenrollTheStudentInSection(studentId, sectionId) {
+    const url = 'http://localhost:4000/api/student/' + studentId + '/section/' + sectionId;
+    console.log(url);
     return fetch(url, {
       method: 'delete',
       credentials: 'include'

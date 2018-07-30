@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     }))
     .then(() =>{
       this.service.deleteProfile(this.user)
-        .then(() => {location.reload()})
+        .then(() => {location.reload()});
     }); // delete profile
   }
 

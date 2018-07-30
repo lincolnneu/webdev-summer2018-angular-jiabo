@@ -75,8 +75,18 @@ export class SectionListComponent implements OnInit {
   }
 
   remove(section){
-    this.service.removeSection(section._id)
-      .then(() => {location.reload()});
+    let enrollments = [];
+    this.service.findStudentsForSection(section._id)
+      .then(res => {
+        enrollments = res;
+        Promise.all(enrollments.map(enrollment => {
+          this.service.unenrollTheStudentInSection(enrollment.student, enrollment.section);
+        }))
+          .then(() => {
+            this.service.removeSection(section._id)
+              .then(() => {location.reload()});
+          });
+      });
   }
 
   edit(section){
