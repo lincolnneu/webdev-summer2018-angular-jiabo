@@ -24,12 +24,13 @@ export class LessonTabsComponent implements OnInit {
     this.courseId = params['courseId'];
     this.moduleId = params['moduleId'];
     this.lessonId = params['lessonId'];
-    this.loadLessons(this.courseId, this.moduleId);
+    if(this.moduleId !== undefined){
+      this.loadLessons(this.courseId, this.moduleId);
+    }
   }
 
 
   loadLessons(courseId, moduleId) {
-    console.log(moduleId);
     this.service.findLessonsForModule(courseId, moduleId)
       .then( lessons => this.lessons = lessons);
   }

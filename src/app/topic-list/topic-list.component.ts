@@ -27,11 +27,12 @@ export class TopicListComponent implements OnInit {
     this.moduleId = params['moduleId'];
     this.lessonId = params['lessonId'];
     this.topicId = params['topicId'];
-    this.loadTopics(this.courseId, this.moduleId, this.lessonId);
+    if(this.courseId !== undefined && this.moduleId !== undefined && this.lessonId !== undefined){
+      this.loadTopics(this.courseId, this.moduleId, this.lessonId);
+    }
   }
 
   loadTopics(courseId, moduleId, lessonId) {
-    console.log(lessonId);
     this.service.findTopicsForLesson(courseId, moduleId, lessonId)
       .then( topics => this.topics = topics);
   }
