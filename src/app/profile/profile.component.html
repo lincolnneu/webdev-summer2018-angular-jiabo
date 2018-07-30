@@ -17,41 +17,43 @@
 <br/>
 <br/>
 <br/>
+<br/>
 
 
-<div class="container-fluid">
+<div class="container">
   <h1>Profile</h1>
 
   <input [(ngModel)] = "user.username"
          placeholder= "username"
          class="form-control"  />
-
+  <br/>
   <input [(ngModel)] = "user.firstName"
          placeholder= "first name"
          class="form-control"  />
-
+  <br/>
   <input [(ngModel)] = "user.lastName"
          placeholder= "last name"
          class="form-control"  />
-
+  <br/>
   <input [(ngModel)] = "user.phoneNumber"
          placeholder= "phone number"
          class="form-control"  />
-
+  <br/>
   <input [(ngModel)] = "user.email"
          placeholder= "email"
          class="form-control"  />
-
+  <br/>
   <input [(ngModel)] = "user.address"
          placeholder= "address"
          class="form-control"  />
-
+  <br/>
   <button (click) = "update()"
           class="btn btn-primary btn-block">
     Update
   </button>
+  <br/>
   <button (click) = "deleteProfile()" class="btn btn-danger btn-block">Delete this profile</button>
-
+  <br/>
   <h2>Enrolled Sections ({{enrollments.length}})</h2>
 
   <ul class="list-group">
@@ -61,6 +63,5 @@
       Grade: {{enrollment.grade}}
       <button (click)="unenroll(enrollment)" class="float-right btn btn-primary">Unenroll</button>
     </li>
-
   </ul>
 </div>
