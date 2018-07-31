@@ -1,4 +1,6 @@
-const HOST = 'http://localhost:8080'
+import * as constants from '../constants';
+
+const HOST = constants.HOST;
 
 export class CourseNavigatorServiceClient{
   findAllCourses(){

@@ -19,12 +19,11 @@ export class RegisterComponent implements OnInit {
   password;
   password2;
   register(username, password, password2){
-    console.log([username, password, password2]);
     if(password === password2){
       this.service.createUser(username, password)
         .then((res) => {
           if(res != null){
-            console.log('redirecting to profile');
+            // console.log('redirecting to profile');
             this.router.navigate(['profile']);
           } else{
             alert('The username is already taken, please try other username!');

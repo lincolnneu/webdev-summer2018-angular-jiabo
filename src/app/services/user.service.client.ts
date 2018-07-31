@@ -1,10 +1,18 @@
+import * as constants from '../constants';
+
 // user service on the client. Mirror image of what lives in the server
 // generate http request, waiting for http request, send a http request that one's going to send back a response.
-export class UserServiceClient{
+export class UserServiceClient {
+  HOST = constants.STUDENT_HOST;
+  USER_API = this.HOST + '/api/user/';
+  LOGIN_API = this.HOST + '/api/login';
+  LOGOUT_API = this.HOST + '/api/logout';
+  PROFILE_API = this.HOST + '/api/profile';
+  REGISTER_API = this.HOST + '/api/register';
 
   // create the mirror image.
   findUserById(userId){
-    return fetch('http://localhost:4000/api/user/' + userId)
+    return fetch(this.USER_API + userId)
       .then(response => response.json());
   }
 
@@ -13,7 +21,7 @@ export class UserServiceClient{
       username : username,
       password: password
     };
-    return fetch('http://localhost:4000/api/login',{
+    return fetch(this.LOGIN_API,{
       method: 'post',
       body: JSON.stringify(credentials),
       credentials: 'include',
@@ -25,7 +33,7 @@ export class UserServiceClient{
   }
 
   logout(){
-    return fetch('http://localhost:4000/api/logout',{
+    return fetch(this.LOGOUT_API,{
       method: 'post',
       credentials: 'include'
     });
@@ -34,7 +42,7 @@ export class UserServiceClient{
 
   // create another endpoint.
   profile(){
-    return fetch('http://localhost:4000/api/profile',{
+    return fetch(this.PROFILE_API,{
       credentials: 'include'
     })
       .then(res => res);
@@ -45,7 +53,7 @@ export class UserServiceClient{
       username: username,
       password: password
     };
-    return fetch('http://localhost:4000/api/register',{ //fetch returns a promise
+    return fetch(this.REGISTER_API, { // fetch returns a promise
       body: JSON.stringify(user),
       credentials: 'include',
       method: 'post',
@@ -59,7 +67,7 @@ export class UserServiceClient{
   }
 
   updateUser(user){
-    return fetch('http://localhost:4000/api/profile', {
+    return fetch(this.PROFILE_API, {
       body: JSON.stringify(user),
       credentials: 'include',
       method: 'put',
@@ -72,7 +80,7 @@ export class UserServiceClient{
   }
 
   deleteProfile(user){
-    return fetch('http://localhost:4000/api/profile', {
+    return fetch(this.PROFILE_API, {
       body: JSON.stringify(user),
       credentials: 'include',
       method: 'delete',

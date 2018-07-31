@@ -1,17 +1,18 @@
-export class SectionServiceClient {
-  SECTION_URL = 'http://localhost:4000/api/course/COURSEID/section';
-  SECTION_URL_SHORT = 'http://localhost:4000/api/section/';
+import * as constants from '../constants';
 
-  findSectionsForStudent(){
-    const url = 'http://localhost:4000/api/student/section';
-    return fetch(url,{
+export class SectionServiceClient {
+  SECTION_URL = constants.STUDENT_HOST + '/api/course/COURSEID/section';
+  SECTION_URL_SHORT = constants.STUDENT_HOST + '/api/section/';
+  STUDENT_SECTION_URL = constants.STUDENT_HOST + '/api/student/section/';
+  findSectionsForStudent() {
+    return fetch(this.STUDENT_SECTION_URL, {
       credentials: 'include' // pass in the credentials
     })
       .then(response => response.json());
 
   }
 
-  findStudentsForSection(sectionId){
+  findStudentsForSection(sectionId) {
     const url = this.SECTION_URL_SHORT + sectionId + '/student';
     return fetch(url, {
       method: 'get',
@@ -20,7 +21,7 @@ export class SectionServiceClient {
   }
 
   enrollStudentInSection(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+    const url = this.STUDENT_SECTION_URL + sectionId + '/enrollment';
     return fetch(url, {
       method: 'post',
       credentials: 'include'
@@ -28,7 +29,7 @@ export class SectionServiceClient {
   }
 
   unenrollStudentInSection(sectionId) {
-    const url = 'http://localhost:4000/api/section/' + sectionId + '/enrollment';
+    const url = this.STUDENT_SECTION_URL + sectionId + '/enrollment';
     return fetch(url, {
       method: 'delete',
       credentials: 'include'
@@ -36,7 +37,7 @@ export class SectionServiceClient {
   }
 
   unenrollTheStudentInSection(studentId, sectionId) {
-    const url = 'http://localhost:4000/api/student/' + studentId + '/section/' + sectionId;
+    const url = this.STUDENT_SECTION_URL + studentId + '/section/' + sectionId;
     console.log(url);
     return fetch(url, {
       method: 'delete',
