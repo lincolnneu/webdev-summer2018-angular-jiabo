@@ -29,7 +29,7 @@ export class SectionServiceClient {
   }
 
   unenrollStudentInSection(sectionId) {
-    const url = this.STUDENT_SECTION_URL + sectionId + '/enrollment';
+    const url = this.SECTION_URL_SHORT + sectionId + '/enrollment';
     return fetch(url, {
       method: 'delete',
       credentials: 'include'
